@@ -1,5 +1,5 @@
 import { Api } from "./base/api";
-import { SellItem } from "../types/sellitem"
+import { SellItem, SellItemsFromAPI } from "../types/sellitem"
 
 
 export class SellItemAPI extends Api {
@@ -7,8 +7,8 @@ export class SellItemAPI extends Api {
     super(baseUrl, options);
   }
 
-  getSellItems(): Promise<SellItem[]> {
-    return this.get<SellItem[]>('/product');
+  getSellItems(): Promise<SellItemsFromAPI> {
+    return this.get<SellItemsFromAPI>('/product');
   }
 
   getOneSellItem(sellItemID: string): Promise<SellItem> {

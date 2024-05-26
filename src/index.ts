@@ -43,12 +43,15 @@ console.log("a", a, typeof a);
 
 apiFetch.getSellItems()
   .then((response) => {
-    console.log("response", response);
-    // console.log("response items", response.items);
-    bm.setItems(response);
+    bm.setItems(response.items);
     console.log(bm);
+    console.log('selected element', bm.getSellItem('c101ab44-ed99-4a54-990d-47aa2bb4e7d9'))
     bm.delItem('c101ab44-ed99-4a54-990d-47aa2bb4e7d9');
+    console.log('Total Sum',bm.getTotalSum());
+    console.log('Get ID',bm.getIds());
+    console.log('total number',bm.itemsNumber());
     console.log(bm);
+    
   });
 
 /*

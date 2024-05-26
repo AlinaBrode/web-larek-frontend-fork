@@ -6,3 +6,8 @@ export interface SellItem {
   price: number;
   image: string;
 }
+
+export interface SellItemsFromAPI {
+  total: number;
+  items: SellItem[];
+}
