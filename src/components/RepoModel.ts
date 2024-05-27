@@ -1,16 +1,23 @@
 import { IRepo } from './repo'
 import { SellItem, SellItemRepo } from '../types/sellitem'
+import { IEvents } from './base/events';
 
 
 export class RepoModel implements IRepo {
   protected repoContent: SellItemRepo[] = [];
+  protected events;
+
+  constructor(events:IEvents) {
+    this.events = events;
+  }
 
   getSellItem(id: string): SellItem {
     return this.repoContent.find((item) => (item.id === id));
   }
 
   setItems(newContent: SellItem[]): void {
-    this.repoContent = newContent.map(item => ({... item, inCatalogue: false}));
+    this.repoContent = newContent.map(item => ({... item, inCatalogue: true}));
+    this.events.emit('items: changed');
   }
 
   delItem(id: string): void {
@@ -20,7 +27,7 @@ export class RepoModel implements IRepo {
   }
 
   getCatalogItems(): SellItem[] {
-    return this.repoContent.filter(item => item.inCatalogue);
+    return this.repoContent; // .filter(item => item.inCatalogue);
   }
 
   getBasketItems(): SellItem[] {

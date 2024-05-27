@@ -4,21 +4,21 @@ import { Component } from "./base/components"
 
 export interface IGalleryCard {
   category: string;
-  name: string;
+  title: string;
   price: number;
   image: string;
 } 
 
 export class GalleryCard extends Component<IGalleryCard> implements IGalleryCard {
   protected elementCategory: HTMLElement;
-  protected elementName: HTMLElement;
+  protected elementTitle: HTMLElement;
   protected elementPrice: HTMLElement;
   protected elementImage: HTMLImageElement;
   
   constructor(container: HTMLElement) {
     super(container)
     this.elementCategory = ensureElement('.card__category', this.container);
-    this.elementName = ensureElement('.card__title', this.container);
+    this.elementTitle = ensureElement('.card__title', this.container);
     this.elementPrice = ensureElement('.card__price', this.container);
     this.elementImage = ensureElement<HTMLImageElement>('.card__image', this.container);
   }
@@ -26,8 +26,8 @@ export class GalleryCard extends Component<IGalleryCard> implements IGalleryCard
   set category(val:string) {
     this.elementCategory.textContent = val;
   }
-  set name(val:string) {
-    this.elementName.textContent = val;
+  set title(val:string) {
+    this.elementTitle.textContent = val;
 
   }
   set price(val:number) {
