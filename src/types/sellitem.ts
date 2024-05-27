@@ -1,6 +1,6 @@
 export interface SellItem {
-  category: string;
   id: string;
+  category: string;
   name: string;
   title: string;
   price: number;
@@ -10,4 +10,8 @@ export interface SellItem {
 export interface SellItemsFromAPI {
   total: number;
   items: SellItem[];
+}
+
+export interface SellItemRepo extends SellItem{
+  inCatalogue: boolean
 }

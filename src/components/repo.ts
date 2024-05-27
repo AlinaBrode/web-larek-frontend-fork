@@ -1,10 +1,13 @@
 import { SellItem } from "../types/sellitem";
 
-export interface IBasket {
+export interface IRepo {
   getSellItem(id: string): SellItem;
   setItems(newItems: SellItem[]): void;
   delItem(id: string): void;
-  getIds(): string[];
+  getCatalogItems(): SellItem[];
+  getBasketItems(): SellItem[];
   getTotalSum(): number;
   itemsNumber(): number;
+  toBasket(id: string): void;
+  fromBasket(id: string): void;
 }
