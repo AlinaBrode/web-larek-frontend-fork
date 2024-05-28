@@ -7,7 +7,7 @@ export interface IRepo {
   getCatalogItems(): SellItem[];
   getBasketItems(): SellItem[];
   getTotalSum(): number;
-  itemsNumber(): number;
+  busketItemsNumber(): number;
   toBasket(id: string): void;
   fromBasket(id: string): void;
 }

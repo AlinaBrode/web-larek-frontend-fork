@@ -1,7 +1,7 @@
 export interface SellItem {
   id: string;
   category: string;
-  name: string;
+  description: string;
   title: string;
   price: number;
   image: string;
@@ -13,5 +13,5 @@ export interface SellItemsFromAPI {
 }
 
 export interface SellItemRepo extends SellItem{
-  inCatalogue: boolean
+  inBasket: boolean
 }

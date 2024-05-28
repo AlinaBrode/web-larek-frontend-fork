@@ -48,7 +48,7 @@ function getSellItems() {
 		bm.delItem('c101ab44-ed99-4a54-990d-47aa2bb4e7d9');
 		console.log('Total Sum', bm.getTotalSum());
 		console.log('Get basket items', bm.getBasketItems());
-		console.log('total number', bm.itemsNumber());
+		console.log('total number', bm.busketItemsNumber());
 		console.log(bm);
 	});
 }

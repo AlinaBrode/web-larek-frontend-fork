@@ -16,14 +16,13 @@ export class RepoModel implements IRepo {
   }
 
   setItems(newContent: SellItem[]): void {
-    this.repoContent = newContent.map(item => ({... item, inCatalogue: true}));
+    this.repoContent = newContent.map(item => ({... item, inBasket: true}));
     this.events.emit('items: changed');
   }
 
   delItem(id: string): void {
-    console.log("array", this.repoContent);
-    console.log("array type", typeof this.repoContent);
     this.repoContent = this.repoContent.filter((item) => item.id !== id);
+    this.events.emit('items: changed');
   }
 
   getCatalogItems(): SellItem[] {
@@ -31,7 +30,7 @@ export class RepoModel implements IRepo {
   }
 
   getBasketItems(): SellItem[] {
-    return this.repoContent.filter(item => !item.inCatalogue);
+    return this.repoContent.filter(item => item.inBasket);
   }
 
   getTotalSum(): number {
@@ -42,15 +41,23 @@ export class RepoModel implements IRepo {
     return s;
   }
 
-  itemsNumber(): number {
-    return this.repoContent.length;
+  busketItemsNumber(): number {
+    let inBasket = 0;
+    for (let item of this.repoContent) {
+      if (item.inBasket) {
+        inBasket ++;
+      }
+    }
+    return inBasket;
   }
 
   toBasket(id: string): void {
-    this.repoContent.filter(item => item.id === id)[0].inCatalogue = false;
+    this.repoContent.filter(item => item.id === id)[0].inBasket = false;
+    this.events.emit('items: changed');
   }
 
   fromBasket(id: string): void {
-    this.repoContent.filter(item => item.id === id)[0].inCatalogue = true;
+    this.repoContent.filter(item => item.id === id)[0].inBasket = true;
+    this.events.emit('items: changed');
   }
 }
