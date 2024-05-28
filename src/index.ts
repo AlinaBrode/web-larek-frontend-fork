@@ -7,6 +7,7 @@ import { cloneTemplate, ensureElement } from './utils/utils';
 import { Gallery } from './components/gallery';
 import { GalleryCard } from './components/gallery-card';
 import { EventEmitter } from './components/base/events';
+import { Basket } from './components/basket-popup';
 
 /*
   Описание данных
@@ -61,3 +62,18 @@ events.on('items: changed', () => {
 });
 
 getSellItems();
+
+let modalContainerElement = ensureElement('#modal-container');
+let modalContentElement = ensureElement('.modal__content', modalContainerElement);
+
+let basket = new Basket(modalContainerElement, modalContentElement);
+
+let basketElement = ensureElement('.header__basket');
+basketElement.addEventListener('click', () => {
+	console.log('basket click');
+	basket.sv(true);
+});
+
+
+
+
