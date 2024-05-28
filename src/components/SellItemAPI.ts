@@ -1,8 +1,12 @@
 import { Api } from "./base/api";
 import { SellItem, SellItemsFromAPI } from "../types/sellitem"
 
+export interface ISellItemAPI {
+  getSellItems(): Promise<SellItemsFromAPI>;
+  getOneSellItem(sellItemID: string): Promise<SellItem>;
+}
 
-export class SellItemAPI extends Api {
+export class SellItemAPI extends Api implements ISellItemAPI {
   constructor(baseUrl: string, options?: RequestInit) {
     super(baseUrl, options);
   }
